@@ -1,0 +1,9 @@
+nginx_port: 80
+nginx_tls_port: 443
+nginx_user: vagrant
+worker_processes: 2
+nginx_document_root: /home/vagrant/src/practice_app/public
+is_development: True
+mysql_root_password: hogehoge
+mysql_user_name: hoge
+mysql_user_password: fuga

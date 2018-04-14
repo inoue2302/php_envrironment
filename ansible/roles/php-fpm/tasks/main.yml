@@ -1,0 +1,15 @@
+- name: composer.phar install
+  shell: curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer creates=/usr/bin/composer
+  tags: php-fpm
+
+- name: php-fpm conf
+  command: mv /etc/php-fpm.d/www.conf /etc/php-fpm.d/www.disabled creates=/etc/php-fpm.d/www.disabled
+  tags: php-fpm
+
+- name: www.conf upload
+  template: src=www.conf dest=/etc/php-fpm.d/www.conf
+  tags: php-fpm
+
+- name: php-fpm start
+  service: name=php-fpm state=running enabled=yes
+  tags: php-fpm

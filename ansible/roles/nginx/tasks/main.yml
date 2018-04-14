@@ -1,0 +1,23 @@
+- name: EPEL install
+  yum: name=epel-release state=present
+  tags: nginx
+
+- name: nginx install
+  yum: name=nginx state=present
+  tags: nginx
+
+- name: nginx.conf upload
+  template: src=nginx.conf dest=/etc/nginx/nginx.conf
+  notify: restart nginx
+  tags: nginx
+
+- name: default.conf upload
+  template: src=default.conf dest=/etc/nginx/conf.d/default.conf
+  notify:
+  - restart nginx
+  - restart php-fpm
+  tags: nginx
+
+- name: nginx start
+  service: name=nginx state=started enabled=yes
+  tags: nginx

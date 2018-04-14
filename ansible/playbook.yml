@@ -1,0 +1,10 @@
+- hosts: all
+  sudo: true
+  user: vagrant
+  roles:
+  - git
+  - php7
+  - nginx
+  - php-fpm
+  - laravel
+  - mysql
